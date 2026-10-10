@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Assignment1_MVC.Models
 
-<div class="text-center">
-    <h1 class="display-4">All Equipment Listing</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">Here is all the equipment</a>.</p>
-</div>
+<h1>Equipment List Available or Not Available</h1>
+
+<table class="table table-light table-group-divider">
+
+    <thread>
+    <tr>
+        <th>Id</th>
+        <th>Status</th>
+        <th>Equipment</th>
+<th>Description</th>
+    </tr>
+    </thread>
+<tbody>
+        @foreach (Form.EquipmentType item in Enum.GetValues(typeof(Form.EquipmentType)))
+        {
+            <tr>
+                <td>@((int)item)</td>
+                <td>
+                    <span class="badge bg-success">Available</span>
+                </td>
+                <td>@item</td>
+
+                <td class="text-muted">@item.GetDisplayName()</td>
+            </tr>
+        }
+        
+</tbody>
+
+</table>

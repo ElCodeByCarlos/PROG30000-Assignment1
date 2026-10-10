@@ -4,7 +4,7 @@ namespace Assignment1_MVC.Controllers
 {
     public class EquipmentController : Controller
     {
-        public IActionResult FastEquipmentTool()
+        public IActionResult AllEquipmentListing()
         {
             return View();
         }

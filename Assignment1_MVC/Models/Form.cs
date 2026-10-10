@@ -1,7 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Assignment1_MVC.Models
 {
+    public static class EnumDescription
+    {
+        public static string GetDisplayName(this Enum equipDescription)
+        {
+            return equipDescription.GetType()
+                .GetMember(equipDescription.ToString())
+                        .FirstOrDefault()?
+                        .GetCustomAttribute<DisplayAttribute>()?
+                        .GetName() ?? equipDescription.ToString();
+        }
+    }
     public class Form
     {
         [Required(ErrorMessage = "Name is required")]
@@ -19,18 +31,28 @@ namespace Assignment1_MVC.Models
 
         [Required(ErrorMessage = "Role is required")]
         public String Role { get; set; } = "";
-
        
+
+        
         public enum EquipmentType
         {
+            [Display(Name = "This is a school laptop")]
             Laptop,
+            [Display(Name = "This is a school phone")]
             Phone,
+            [Display(Name = "This is a school tablet")]
             Tablet,
+            [Display(Name = "This is a school Wii Console")]
             Wii,
+            [Display(Name = "This is a school Xbox Console")]
             Xbox,
+            [Display(Name = "This is a school Microwave")]
             Microwave,
+            [Display(Name = "These are school Eggs")]
             Eggs
         }
+
+
 
         [Required]
         public EquipmentType? Equipment { get; set; }
