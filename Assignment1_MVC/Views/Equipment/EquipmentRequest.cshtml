@@ -1,0 +1,51 @@
+﻿@using Assignment1_MVC.Models
+@model Form
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Equipment Request Details</h3>
+        </div>
+        <div class="card-body">
+            @if (Model == null)
+            {
+                <div class="alert alert-warning mb-0">
+                    <h5 class="alert-heading fw-bold">No Active Request</h5>
+                    <p class="mb-2">No form data has been submitted yet to display here.</p>
+                    <hr>
+                    <a asp-controller="Form" asp-action="RequestForm" class="btn btn-primary btn-sm">
+                        Go to Request Form
+                    </a>
+                </div>
+            }
+            else
+            {
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Requester Name</th>
+                            <th>Role</th>
+                            <th>Requested Equipment</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>                      
+                            <td class="fw-bold">@Model.Name</td>                           
+                            <td>
+                                <span class="badge @(Model.Role == "Student" ? "bg-info" : "bg-warning") text-dark">
+                                    @Model.Role
+                                </span>
+                            </td>
+                            <td>@Model.Equipment.GetDisplayName()</td>
+                            <td>@Model.Duration Days</td>
+                        </tr>
+                    </tbody>
+                </table>             
+                <a asp-controller="Form" asp-action="RequestForm" class="btn btn-outline-secondary mt-3">
+                    Submit Another Request
+                </a>
+            }
+        </div>
+    </div>
+</div>

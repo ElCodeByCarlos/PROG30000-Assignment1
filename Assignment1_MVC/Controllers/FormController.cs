@@ -11,6 +11,12 @@ namespace Assignment1_MVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult EquipmentRequest()
+        {
+            return View("~/Views/Equipment/EquipmentRequest.cshtml");
+        }
+
         [HttpPost]
         public IActionResult RequestForm(Form model)
         {
